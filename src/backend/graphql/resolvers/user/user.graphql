@@ -1,0 +1,5 @@
+
+type User {
+    id:    ID!
+    login: String!
+}

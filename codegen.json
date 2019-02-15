@@ -1,0 +1,38 @@
+{
+    "schema": "src/common/schema.graphql",
+    "overwrite": true,
+    "documents": "src/frontend/graphql/documents.graphql",
+    "generates": {
+        "src/backend/graphql/generated.ts": {
+            "config": {
+                "scalars": {
+                    "Date": "Date",
+                    "TypeMatchedScalar": "never"
+                },
+                "interfacePrefix": "",
+                "mappers": {
+                    "User": "@graphql/codegen-mappers#User"
+                },
+                "contextType": "@graphql/codegen-mappers#ResolveContext"
+            },
+            "plugins": [
+                "typescript-common",
+                "typescript-server",
+                "typescript-resolvers"
+            ]
+        },
+        "src/client/graphql/generated.tsx": {
+            "config": {
+                "scalars": {
+                    "Date":              "string",
+                    "TypeMatchedScalar": "never"
+                },
+                "interfacePrefix": ""
+            },
+            "plugins": [
+                "typescript-common",
+                "typescript-client"
+            ]
+        }
+    }
+}

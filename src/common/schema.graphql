@@ -1,0 +1,26 @@
+# import * from "../backend/graphql/resolvers/user/user.graphql"
+# You have to use imports in order to pull all your local types here.
+# Details: https://oss.prisma.io/content/graphql-import/overview
+
+
+# Put your root queries and mutations here.
+
+type Query {
+    getUsers(req: GetUsersRequest!): GetUsersResponse!
+}
+
+input GetUsersRequest {
+    limit:  Int!
+    offset: Int!
+}
+
+type GetUsersResponse {
+    total: Int!
+    data: [User]
+}
+
+
+# type Mutation {
+#    
+# }
+
