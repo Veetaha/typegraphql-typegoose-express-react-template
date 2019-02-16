@@ -1,4 +1,5 @@
-import { Maybe } from '@common/interfaces';
+import * as I from '@modules/interfaces';
+import { Typegoose } from 'typegoose';
 
 
 /**
@@ -9,7 +10,7 @@ import { Maybe } from '@common/interfaces';
  * 
  * @throws Error if `defaultVal == null` and `!(variableId in process.env)`.
  */
-export function tryReadEnv(variableId: string, defaultVal?: Maybe<string>) {
+export function tryReadEnv(variableId: string, defaultVal?: I.Maybe<string>) {
     if (variableId in process.env) {
         return process.env[variableId]!;
     }
@@ -19,4 +20,8 @@ export function tryReadEnv(variableId: string, defaultVal?: Maybe<string>) {
     throw new Error(
         `failed to read '${variableId}' environment variable`
     );
+}
+
+export function getModelFromTypegoose<T extends I.ClassType<Typegoose>>(constr: T) {
+    return new constr().getModelForClass(constr) as I.TypegooseModel<T>;
 }

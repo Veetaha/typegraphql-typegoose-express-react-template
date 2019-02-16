@@ -1,30 +1,18 @@
+// import * as Vts from 'vee-type-safe';
+import * as I from '@modules/interfaces';
+import { UserType, UserTryCrud } from '@models/user';
 import { 
-    Resolver, 
-    ObjectType, 
-    Field, 
-    ResolverInterface, 
-    FieldResolver, 
-    Root,
-    Query
+    Resolver,
+    Query,
+    Arg
 } from 'type-graphql';
-import { UserData } from '@models/user';
 
-@ObjectType() 
-export class UserType implements Partial<UserData> {
-    @Field() login!:     string;
-    @Field() init_date!: Date;    
-}
 
 @Resolver(_of => UserType)
-export class UserResolver implements ResolverInterface<UserType> {
+export class UserResolver { // implements ResolverInterface<UserData> {
     @Query(_returns => UserType)
-    getUser() {
-        return { login: 'logogin', init_date: new Date };
-    }
-    
-
-    @FieldResolver()
-    login(@Root() user: UserType) {
-        return user.login;
+    async getUser(@Arg('id') id: I.ObjectId) {
+        return UserTryCrud.tryFindById(id);
     }
 }
+

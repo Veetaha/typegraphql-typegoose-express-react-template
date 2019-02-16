@@ -1,18 +1,30 @@
 import * as Config from '@app/config';
 import * as Crypto from 'crypto';
-import { Typegoose, prop, staticMethod, ModelType, } from 'typegoose';
-import { required, index } from '@modules/flags';
-import { TypegooseDocProperties } from '@modules/interfaces';
-import { TryCrud         } from '@modules/mongoose-utils/try-crud';
+import * as Utils  from '@modules/utils';
+import * as I      from '@modules/interfaces';
+import { required, index               } from '@modules/flags';
+import { TryCrud                       } from '@modules/mongoose-utils/try-crud';
+import { ObjectType, Field             } from 'type-graphql';
+import { Typegoose, prop, staticMethod } from 'typegoose';
 
 
-export class UserTG extends Typegoose {
+@ObjectType('User') 
+export class UserType extends Typegoose {
+
+    @Field()
+    @prop()
+    get id(this: User): I.ObjectId {
+        return this._id;
+    }
+
+    @prop({ required }) 
+    password!: string; // do not expose password as public GraphQL field
+
+    @Field()
     @prop({ required, index }) 
     login!: string;
 
-    @prop({ required }) 
-    password!: string;
-
+    @Field()
     @prop({ required, default: Date.now })
     init_date!: Date;
 
@@ -40,17 +52,20 @@ export class UserTG extends Typegoose {
      * @param password Real password to be encoded.
      */
     @staticMethod
-    static encodePassword(this: UserModel, password: string) {
+    public static encodePassword(this: UserModel, password: string) {
         const hash = Crypto.createHmac('sha512', Config.PasswordSalt);
         hash.update(password);
         return hash.digest('hex');
     }
+
 }
 
-
-export const User = new UserTG().getModelForClass(UserTG);
+// Narrowing type, due to Typegoose typing bug (instance props on model)
+export const User = Utils.getModelFromTypegoose(UserType);
 export const UserTryCrud = new TryCrud(User);
 
-export type UserData  = TypegooseDocProperties<UserTG>;
-export type UserModel = ModelType<UserTG> & typeof UserTG;
-export type UserDoc   = InstanceType<UserModel>;
+export type User      = InstanceType<UserModel>;
+export type UserModel = typeof User;
+export type UserData  = I.TypegooseDocProps<UserType>;
+
+
