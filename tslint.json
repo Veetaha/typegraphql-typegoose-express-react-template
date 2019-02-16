@@ -29,7 +29,7 @@
         "no-return-await": true,
         "no-floating-promises": true,
         "no-inferred-empty-object-type": true,
-        "strict-type-predicates": true,
+        "strict-type-predicates": false,
         "restrict-plus-operands": true,
         "jsx-curly-spacing": false,
         "jsx-boolean-value": false,

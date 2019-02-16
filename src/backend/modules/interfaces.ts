@@ -1,10 +1,20 @@
 import * as Vts      from 'vee-type-safe';
 import * as Mongoose from 'mongoose';
+import { Typegoose } from 'typegoose';
 
 export type MongooseSchemaObj<TData extends Vts.BasicObject> = {
     [TKey in keyof TData]: MongooseSchemaObj.TypeToSchemaDefinition<TData[TKey]>;
 };
 export type BufferConstructor = typeof Buffer;
+export type ObjectId = Mongoose.Types.ObjectId;
+
+
+export type TypegooseDocProperties<TClass extends Typegoose> = {
+    [TFilteredKey in { 
+        [TKey in keyof TClass]: TClass[TKey] extends Function ? never: TKey 
+    }[keyof TClass]]: TClass[TFilteredKey]
+};
+
 
 
 

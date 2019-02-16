@@ -25,7 +25,8 @@
         "declaration":    false, 
         "declarationMap": false, 
         "esModuleInterop": true, 
-        "experimentalDecorators":     true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata":  true, // Typegoose, TypeGraphQL requirement
         /* Checking severity level */
         "strict":                           true,
         "noUnusedLocals":                   true,
