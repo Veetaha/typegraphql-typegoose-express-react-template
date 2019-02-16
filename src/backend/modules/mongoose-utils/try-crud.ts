@@ -1,12 +1,7 @@
 import * as Mongoose from 'mongoose';
 import * as      Vts from 'vee-type-safe';
-import { ObjectId } from '@modules/interfaces';
-
-export class NotFoundError extends Error {
-    constructor(errorMessage = 'nothing was found'){
-        super(errorMessage);
-    }
-}
+import { ObjectId      } from '@modules/interfaces';
+import { NotFoundError } from '@modules/statused-error';
 
 export class IdNotFoundError extends NotFoundError {
     constructor(id: ObjectId, targetName = 'instance') {

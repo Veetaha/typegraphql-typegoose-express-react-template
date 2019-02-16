@@ -1,34 +1,33 @@
 {
-  "name": "int20h-2019",
+  "name": "typegraphql-typegoose-express-react-template",
   "version": "1.0.0",
   "description": "",
-  "main": "src/host/index.ts",
+  "main": "build/backend/app.js",
   "scripts": {
-    "codegen": "node scripts/bundle-gql-schema.js src/backend/graphql src/common/schema.graphql",
-    "build-docs": "graphdoc -s src/common/schema.graphql -o ./dist/docs/graphdoc --force",
-    "build-graphql": "gql-gen",
-    "build-client:prod": "webpack --config src/client/webpack.config.js --mode production",
-    "build-client": "webpack --config src/client/webpack.config.js --mode development --progress",
-    "build-back": "cd src/backend/ && tsc && ef-tspm && cd ../../",
-    "build:prod": "npm run clean && npm run build-host && npm run build-client:prod",
-    "build": "npm run clean && npm run build-host && npm run build-client",
-    "clean": "rm -rf build",
-    "dev": "npm-run-all --parallel watch:client watch:server",
+    "build-docs":       "graphdoc -s src/common/schema.graphql -o ./dist/docs/graphdoc --force",
+    "build-graphql":    "node scripts/generate-schema.js && gql-gen",
+    "build-front:prod": "webpack --config src/client/webpack.config.js --mode production",
+    "build-front":      "webpack --config src/client/webpack.config.js --mode development --progress",
+    "build-back":       "cd src/backend/ && tsc && ef-tspm && cd ../../",
+    "build:prod":       "npm run clean && npm run build-back && npm run build-client:prod",
+    "build":            "npm run clean && npm run build-back && npm run build-client",
+    "clean":            "rm -rf build dist",
+    "dev":              "npm-run-all --parallel watch:front watch:back",
     "heroku-postbuild": "npm run build:prod",
-    "watch:client": "webpack --config src/client/webpack.config.js --watch --mode development --progress",
-    "watch:server": "nodemon",
-    "start": "node build/host/index.js"
+    "watch:front":      "webpack --config src/frontend/webpack.config.js --watch --mode development --progress",
+    "watch:back":       "nodemon",
+    "start":            "node build/backend/app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/101gram/INT20H-2019.git"
+    "url": "git+https://github.com/Veetaha/typegraphql-typegoose-express-react-template.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/101gram/INT20H-2019/issues"
+    "url": "https://github.com/Veetaha/typegraphql-typegoose-express-react-template/issues"
   },
-  "homepage": "https://github.com/101gram/INT20H-2019#readme",
+  "homepage": "https://github.com/Veetaha/typegraphql-typegoose-express-react-template#readme",
   "devDependencies": {
     "@2fd/graphdoc": "^2.4.0",
     "@ef-carbon/tspm": "^2.2.5",

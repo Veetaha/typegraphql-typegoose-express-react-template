@@ -4,9 +4,6 @@ import { buildSchema       } from "type-graphql";
 import { UserResolver      } from "@graphql/user/resolver";
 import { GqlObjectIdScalar } from "@graphql/scalars/object-id";
 
-
-
-
 export async function makeApolloServer() {
     return new Apollo.ApolloServer({
         playground: true,
