@@ -60,7 +60,7 @@
     "chai": "^4.2.0",
     "classnames": "^2.2.6",
     "css-loader": "^1.0.1",
-    "graphql-cli": "^3.0.9",
+    "graphql-cli": "^3.0.10",
     "graphql-code-generator": "^0.16.1",
     "graphql-codegen-add": "^0.16.1",
     "graphql-codegen-typescript-client": "^0.16.1",

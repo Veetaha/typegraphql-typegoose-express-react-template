@@ -7,8 +7,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     entry: {
         bundle: [
-            "./src/client/index.tsx",
-            './src/client/index.scss'
+            relativePath('index.tsx'),
+            relativePath('index.scss')
         ]
     },
     
@@ -41,7 +41,7 @@ module.exports = {
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
             { 
                 test: /\.tsx?$/, 
-                loader: "awesome-typescript-loader?configFileName=./src/client/tsconfig.json" 
+                loader: `awesome-typescript-loader?configFileName=${relativePath('tsconfig.json')}` 
             },
 
             
