@@ -4,21 +4,24 @@ import * as Utils  from '@modules/utils';
 import * as I      from '@modules/interfaces';
 import { required, index               } from '@modules/flags';
 import { TryCrud                       } from '@modules/mongoose-utils/try-crud';
-import { ObjectType, Field             } from 'type-graphql';
+import { ObjectType, Field, Authorized } from 'type-graphql';
 import { Typegoose, prop, staticMethod } from 'typegoose';
+import CV from 'class-validator';
 
-
-@ObjectType('User') 
+@ObjectType('User')
 export class UserType extends Typegoose {
 
+   
     @Field()
     @prop()
     get id(this: User): I.ObjectId {
         return this._id;
     }
 
+    
+
     @prop({ required }) 
-    password!: string; // do not expose password as public GraphQL field
+    password?: string; // do not expose password as public GraphQL field
 
     @Field()
     @prop({ required, index }) 
@@ -39,7 +42,7 @@ export class UserType extends Typegoose {
      * If no such user was found or mongoose ODM throws an error.
      */
     @staticMethod
-    static async tryFindByLoginPassword(this: UserModel, login: string, password: string) {
+    static async ryFindByLoginPassword(this: UserModel, login: string, password: string) {
         return UserTryCrud.tryFindOne({
             login, 
             password: this.encodePassword(password)

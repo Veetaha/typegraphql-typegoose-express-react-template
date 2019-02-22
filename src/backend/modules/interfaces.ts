@@ -1,5 +1,5 @@
-import * as Vts      from 'vee-type-safe';
-import * as Mongoose from 'mongoose';
+import Vts      from 'vee-type-safe';
+import Mongoose from 'mongoose';
 import { Typegoose } from 'typegoose';
 import { ClassType } from '@common/interfaces';
 

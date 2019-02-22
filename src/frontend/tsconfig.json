@@ -1,0 +1,39 @@
+{
+    "compilerOptions": {
+        "outDir": "./../dist/",
+        "jsx": "react",
+        "target": "es2015",
+        "lib": ["esnext", "dom"],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "rootDir": "..",
+        "baseUrl": ".",
+        "paths": {
+            "@common/*":       [ "../common/*"    ],
+            "@reducers/*":     [ "reducers/*"     ],
+            "@actions/*":      [ "actions/*"      ],
+            "@components/*":   [ "components/*"   ],
+            "@services/*":     [ "services/*"     ],
+            "@configs/*":      [ "configs/*"      ],
+            "@modules/*":      [ "modules/*"      ],
+            "@theme/*":        [ "theme/*"        ],
+            "@app/*":          [ "./*"            ],
+            "@graphql/*":      [ "graphql/*"      ],
+            "*": ["./../common/ambient-declarations/*", "*"]
+        },
+        "noImplicitAny":   true,
+        //"esmoduleInterop": true,
+        "experimentalDecorators":     true,
+        "strict":                     true,
+        "noUnusedLocals":             true,
+        "noUnusedParameters":         true,
+        "noImplicitThis":             true,
+        "noImplicitReturns":          true,
+        "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true,
+        "checkJs": false
+    },
+    "include": [
+        "./**/*"
+    ]
+}

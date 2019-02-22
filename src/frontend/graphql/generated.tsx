@@ -1,6 +1,6 @@
 export type Maybe<T> = T | null;
 
-/** ObjectId unique identifier. */
+/** Bson ObjectId unique identifier (hexadecimal string). */
 export type ObjectId = string;
 
 /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */

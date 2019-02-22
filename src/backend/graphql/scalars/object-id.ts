@@ -10,7 +10,7 @@ function tryParseObjectId(id: string) {
 }
 export const GqlObjectIdScalar = new GraphQLScalarType({
     name:        'ObjectId',
-    description: 'ObjectId unique identifier.',
+    description: 'Bson ObjectId unique identifier (hexadecimal string).',
     serialize:   String,
     parseValue:  tryParseObjectId,
     parseLiteral(ast) {
