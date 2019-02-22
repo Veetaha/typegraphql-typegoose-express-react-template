@@ -1,18 +1,25 @@
 import { createStore, applyMiddleware, compose, Action as ActionCommon } from 'redux';
-import { PhotosState } from '@actions/fetchPhotos';
+import { UserState } from '@actions/user';
 import rootReducer from '@reducers/index';
 import thunk from 'redux-thunk';
 
-const enhancer = compose(
-    
+// DELETE ON PROD
+const composeEnhancers = (
+        window as any
+    ).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+
+const enhancer = composeEnhancers(
     applyMiddleware(thunk),
 );
+
+
 export interface Action<T = unknown> extends ActionCommon  {
     payload: T;
 }
 
 export interface ApplicationStore {
-    photos: PhotosState;
+    user: UserState;
 }
 
 export default createStore(rootReducer, enhancer);

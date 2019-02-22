@@ -1,5 +1,5 @@
 import { combineReducers, Reducer } from 'redux';
-import photosReducer from '@reducers/fetchPhotos';
+import userReducer from '@reducers/user';
 import { Action } from '@configs/configureReduxStore';
 
 import { ApplicationStore } from '@configs/configureReduxStore';
@@ -9,7 +9,7 @@ type ObjForCombineReducers = {
 };
 
 const applicationState: ObjForCombineReducers = {
-    photos: photosReducer
+    user: userReducer
 };
 
 export default combineReducers(applicationState);
