@@ -1,6 +1,7 @@
 query queryUser($id: ObjectId!) {
     getUser(id: $id) {
         init_date
-        login
+        role
+        username
     }
 }

@@ -1,5 +1,17 @@
 export type Maybe<T> = T | null;
 
+export interface LoginRequestType {
+  username: string;
+
+  password: string;
+}
+/** Identifies user access level */
+export enum UserRole {
+  Admin = "Admin",
+  Guest = "Guest",
+  Regular = "Regular"
+}
+
 /** Bson ObjectId unique identifier (hexadecimal string). */
 export type ObjectId = string;
 
@@ -26,7 +38,9 @@ export namespace QueryUser {
 
     init_date: string;
 
-    login: string;
+    role: UserRole;
+
+    username: string;
   };
 }
 
@@ -44,7 +58,8 @@ export namespace QueryUser {
     query queryUser($id: ObjectId!) {
       getUser(id: $id) {
         init_date
-        login
+        role
+        username
       }
     }
   `;

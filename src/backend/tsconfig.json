@@ -3,7 +3,8 @@
         "outDir": "./../../build",
         "baseUrl": ".",
         "rootDirs": [
-            "."
+            ".",
+            "../common"
         ],
         "typeRoots": [
             "../common/ambient-declarations"

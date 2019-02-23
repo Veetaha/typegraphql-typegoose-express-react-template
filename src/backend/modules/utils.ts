@@ -7,7 +7,6 @@ import { IntegerRange } from '@modules/integer-range';
 import { assert, Log  } from '@modules/debug';
 import { Typegoose    } from 'typegoose';
 
-
 /**
  * Tries to read variable from `process.env` and returns its value.
  * @param variableId Environmental variable name.
@@ -27,6 +26,8 @@ export function tryReadEnv(variableId: string, defaultVal?: I.Maybe<string>) {
         `failed to read '${variableId}' environment variable`
     );
 }
+
+
 
 export function getModelFromTypegoose<T extends I.ClassType<Typegoose>>(constr: T) {
     return new constr().getModelForClass(constr) as I.TypegooseModel<T>;
