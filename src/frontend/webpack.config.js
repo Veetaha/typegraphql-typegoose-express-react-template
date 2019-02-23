@@ -7,14 +7,15 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     entry: {
         bundle: [
-            "./src/client/index.tsx",
-            './src/client/index.scss'
+            relativePath('index.tsx'),
+            relativePath('index.scss')
         ]
     },
     
     output: {
         filename: "bundle.js",
-        path: `${__dirname}./../../dist`
+        publicPath: '/',
+        path: relativePath(`./../../dist`)
     },
 
     // Enable sourcemaps for debugging webpack's output.
@@ -24,15 +25,15 @@ module.exports = {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx", ".js",  '.mjs', ".json"],
         alias: { 
-            "@app":        relativePath("."),
-            "@common":     relativePath("../common" ),
-            "@components": relativePath("components"),
-            "@reducers":   relativePath("reducers"  ),
-            "@actions":    relativePath("actions"   ),
-            "@theme":      relativePath("theme"     ),
-            "@configs":    relativePath("configs"   ),
-            "@services":   relativePath("services"  ),
-            "@graphql":    relativePath("graphql"   )
+            "@app":        relativePath("."                ),
+            "@common":     relativePath("../common"        ),
+            "@components": relativePath("components"       ),
+            "@router":     relativePath("components/router"),
+            "@reducers":   relativePath("reducers"         ),
+            "@actions":    relativePath("actions"          ),
+            "@theme":      relativePath("theme"            ),
+            "@configs":    relativePath("configs"          ),
+            "@graphql":    relativePath("graphql"          )
         },
     },
 
@@ -41,7 +42,7 @@ module.exports = {
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
             { 
                 test: /\.tsx?$/, 
-                loader: "awesome-typescript-loader?configFileName=./src/client/tsconfig.json" 
+                loader: `awesome-typescript-loader?configFileName=${relativePath('tsconfig.json')}` 
             },
 
             

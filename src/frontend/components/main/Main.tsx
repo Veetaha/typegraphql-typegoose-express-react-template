@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
-//import { EP } from '@common/interfaces';
-import ImageGridViewer from '@components/imageCard/GridViewer';
-import ImageModal from '@components/imageViewer/ImageModal';
-import MainInformation from '@components/imageViewer/MainInformation';
-import { QueryPhotos } from '@graphql/index';
+import Router from '@router/root';
+import Breadcrumbs from '@components/partials/Breadcrumbs';
 
 const styles = ({  spacing }: Theme) => createStyles({
     icon: {
@@ -14,7 +11,6 @@ const styles = ({  spacing }: Theme) => createStyles({
         maxWidth: 1000,
         height: 500,
         margin: `${spacing.unit * 6}px auto`,
-        //margin: `${spacing.unit * 8}px auto ${spacing.unit * 6}px`,
     },
     heroButtons: {
         marginTop: spacing.unit * 4,
@@ -25,7 +21,7 @@ const styles = ({  spacing }: Theme) => createStyles({
 export interface Props extends WithStyles<typeof styles> {}
 
 interface State {
-    currentPhoto: QueryPhotos.Data | null;
+    //currentPhoto: QueryPhotos.Data | null;
 }
 
 class Main extends React.Component<Props, State> {
@@ -33,9 +29,9 @@ class Main extends React.Component<Props, State> {
         currentPhoto: null
     };
 
-    setCurrentPhoto = (photo: QueryPhotos.Data) => {
-        this.setState({ currentPhoto: photo });
-    }
+    // setCurrentPhoto = (photo: QueryPhotos.Data) => {
+    //     this.setState({ currentPhoto: photo });
+    // }
 
     unsetCurrentPhoto = () => { 
         this.setState({ currentPhoto: null });
@@ -44,12 +40,8 @@ class Main extends React.Component<Props, State> {
     render() {
         return (
             <main>
-                <ImageModal 
-                    cbModalClosed={this.unsetCurrentPhoto} 
-                    currentPhoto={this.state.currentPhoto}
-                />
-                <MainInformation/>
-                <ImageGridViewer cbGetSelectedPhoto={this.setCurrentPhoto}/>
+                <Breadcrumbs />
+                <Router />
             </main>
         );
     }
