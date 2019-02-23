@@ -18,11 +18,11 @@ class Footer extends React.Component<Props> {
         return (
             <footer className={classes.footer}>
                 <Typography variant="h6" align="right" gutterBottom>
-                    Powered by 100gram 
+                    Powered by 100gram adfsd
                 </Typography>
             </footer>
         );
     }
-  }
+}
 
 export default withStyles(styles)(Footer);

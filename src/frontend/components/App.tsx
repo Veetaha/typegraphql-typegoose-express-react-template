@@ -8,6 +8,7 @@ import Main from '@components/main/Main';
 import { SnackbarProvider } from 'notistack';
 import { Provider } from 'react-redux';
 import store from '@configs/configureReduxStore'; 
+import RouterConfig from '@router/config';
 
 export default class App extends React.Component {
     render() {
@@ -15,10 +16,12 @@ export default class App extends React.Component {
             <Provider store={store}>
                 <SnackbarProvider maxSnack={3}>
                     <MuiThemeProvider theme={theme}>
-                        <CssBaseline />
-                        <Header />
-                        <Main />
-                        <Footer />
+                        <RouterConfig>
+                            <CssBaseline />
+                            <Header />
+                            <Main />
+                            <Footer />
+                        </RouterConfig>
                     </MuiThemeProvider>
                 </SnackbarProvider>
             </Provider>

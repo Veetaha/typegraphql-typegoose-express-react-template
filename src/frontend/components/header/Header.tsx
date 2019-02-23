@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 // import IconButton from '@material-ui/core/IconButton';
 import TagFaces from '@material-ui/icons/TagFaces';
 // import Book from '@material-ui/icons/Book';
@@ -51,24 +52,20 @@ class Header extends React.Component<Props> {
                     >
                         {"Emotion Picker"}
                     </Typography>
-                    <Button 
-                        className={classes.button} 
-                        href="/graphql/"
-                    >
-                        <div className={classes.icon}>
-                            <i className="fas fa-chalkboard-teacher" />
-                        </div> 
-                        Playground
-                    </Button>
-                    <Button 
-                        className={classes.button} 
-                        href="/docs/graphdoc/"
-                    >
-                        <div className={classes.icon}>
-                            <i className="fas fa-book"/>
-                        </div>
-                        Docs
-                    </Button>
+                    <Link to="/about">
+                        <Button 
+                            className={classes.button} 
+                        >
+                            About
+                        </Button>
+                    </Link>
+                    <Link to="/">
+                        <Button 
+                            className={classes.button} 
+                        >
+                            Home
+                        </Button>
+                    </Link>
                 </Toolbar>
             </AppBar>
         );

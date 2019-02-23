@@ -14,7 +14,8 @@ module.exports = {
     
     output: {
         filename: "bundle.js",
-        path: `${__dirname}./../../dist`
+        publicPath: '/',
+        path: relativePath(`./../../dist`)
     },
 
     // Enable sourcemaps for debugging webpack's output.
@@ -24,15 +25,15 @@ module.exports = {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx", ".js",  '.mjs', ".json"],
         alias: { 
-            "@app":        relativePath("."),
-            "@common":     relativePath("../common" ),
-            "@components": relativePath("components"),
-            "@reducers":   relativePath("reducers"  ),
-            "@actions":    relativePath("actions"   ),
-            "@theme":      relativePath("theme"     ),
-            "@configs":    relativePath("configs"   ),
-            "@services":   relativePath("services"  ),
-            "@graphql":    relativePath("graphql"   )
+            "@app":        relativePath("."                ),
+            "@common":     relativePath("../common"        ),
+            "@components": relativePath("components"       ),
+            "@router":     relativePath("components/router"),
+            "@reducers":   relativePath("reducers"         ),
+            "@actions":    relativePath("actions"          ),
+            "@theme":      relativePath("theme"            ),
+            "@configs":    relativePath("configs"          ),
+            "@graphql":    relativePath("graphql"          )
         },
     },
 
